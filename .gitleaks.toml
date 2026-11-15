@@ -1,0 +1,16 @@
+title = "Custom Gitleaks Rules"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "custom-sensitive-var-names"
+description = "Block custom secret, password, and token variable assignments"
+regex = '''(?i)(api[_-]?key|secret[_-]?key|access[_-]?token|auth[_-]?token|db[_-]?pass(word)?|private[_-]?key|client[_-]?secret)\s*[:=]\s*['"]?[a-zA-Z0-9_\-\/+=]{8,}['"]?'''
+tags = ["custom", "env"]
+
+[[rules]]
+id = "block-sensitive-filenames"
+description = "Block .env, .log, .sql, .pem, and .key files"
+path = '''(?i)(^\.env$|\.env\.|\.log$|\.sql$|\.pem$|\.key$|\.sqlite3?$)'''
+tags = ["filename"]
