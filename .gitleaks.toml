@@ -3,6 +3,14 @@ title = "Custom Gitleaks Rules"
 [extend]
 useDefault = true
 
+[allowlist]
+description = "Ignore placeholder documentation values"
+regexes = [
+  '''your_key_here''',
+  '''placeholder''',
+  '''changeme'''
+]
+
 [[rules]]
 id = "custom-sensitive-var-names"
 description = "Block custom secret, password, and token variable assignments"
