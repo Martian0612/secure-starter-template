@@ -1,0 +1,16 @@
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*secret*
+
+# Logs & Local Databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+logs/
+debug/
