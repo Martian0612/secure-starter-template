@@ -1,0 +1,26 @@
+name: Initialize Repository README
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  init-readme:
+    if: github.repository != 'Martian0612/secure-starter-template'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Replace README with repository name and remove init workflow
+        run: |
+          echo "# ${GITHUB_REPOSITORY#*/}" > README.md
+          rm -f .github/workflows/init-template.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@://github.com"
+          git add README.md .github/workflows/init-template.yml
+          git commit -m "docs: initialize README with repository name"
+          git push
