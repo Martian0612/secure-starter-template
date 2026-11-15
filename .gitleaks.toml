@@ -4,7 +4,11 @@ title = "Custom Gitleaks Rules"
 useDefault = true
 
 [allowlist]
-description = "Ignore placeholder documentation values"
+description = "Global allowlist for config and placeholder docs"
+paths = [
+  '''^\.gitleaks\.toml$'''
+]
+regexTarget = "line"
 regexes = [
   '''your_key_here''',
   '''placeholder''',
@@ -16,6 +20,14 @@ id = "custom-sensitive-var-names"
 description = "Block custom secret, password, and token variable assignments"
 regex = '''(?i)(api[_-]?key|secret[_-]?key|access[_-]?token|auth[_-]?token|db[_-]?pass(word)?|private[_-]?key|client[_-]?secret)\s*[:=]\s*['"]?[a-zA-Z0-9_\-\/+=]{8,}['"]?'''
 tags = ["custom", "env"]
+
+  [[rules.allowlists]]
+  regexTarget = "line"
+  regexes = [
+    '''your_key_here''',
+    '''placeholder''',
+    '''changeme'''
+  ]
 
 [[rules]]
 id = "block-sensitive-filenames"
